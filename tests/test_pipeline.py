@@ -190,6 +190,6 @@ def test_dashboard_render_and_incident_selection():
     dashboard = AppTest.from_file(str(ROOT / 'dashboard/app.py')).run(timeout=30)
     assert not dashboard.exception
     assert len(dashboard.metric) == 5
-    assert dashboard.metric[0].value == '1222'
+    assert dashboard.metric[0].value == '1,222'
     dashboard.selectbox[0].select_index(1).run(timeout=30)
     assert not dashboard.exception

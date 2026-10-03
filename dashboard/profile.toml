@@ -1,0 +1,5 @@
+# Public profile URLs only. No passwords, tokens or API keys.
+# Example format: https://www.linkedin.com/in/your-handle/
+linkedin = "https://www.linkedin.com/in/tajahuja9/"
+# Example format: https://github.com/your-handle
+github = "https://github.com/tajahuja"
