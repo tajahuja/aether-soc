@@ -37,9 +37,9 @@ def main():
         page = wait_for('http://127.0.0.1:8502/').decode()
         assert '<html' in page.lower()
         assert json.loads(wait_for('http://127.0.0.1:8001/health'))['status'] == 'ok'
-        assert len(json.loads(wait_for('http://127.0.0.1:8001/alerts'))) == 9
-        assert len(json.loads(wait_for('http://127.0.0.1:8001/incidents'))) == 5
-        print('Live Streamlit and FastAPI HTTP checks passed; 9 alerts, 5 incidents.')
+        assert len(json.loads(wait_for('http://127.0.0.1:8001/alerts'))) == 10
+        assert len(json.loads(wait_for('http://127.0.0.1:8001/incidents'))) == 6
+        print('Live Streamlit and FastAPI HTTP checks passed; 10 alerts, 6 incidents.')
     finally:
         for process in processes:
             process.terminate()

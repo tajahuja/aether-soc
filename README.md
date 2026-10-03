@@ -76,7 +76,7 @@ Thresholds and indicator destinations are in `app/config.py`.
 
 ## Sample incident
 
-The default demo has **1,222 events, 9 alerts and 5 incidents**. Select the incident for
+The default demo has **1,222 events, 10 alerts and 6 incidents**. Select the incident for
 `lab.admin` in the dashboard: seven failures, successful privileged authentication,
 encoded PowerShell, then a connection to `203.0.113.200`. Four related alerts become
 one incident with score **100/100**, covering T1110, T1078 and T1059.001.
@@ -173,3 +173,4 @@ tuning. Evidence provenance makes alerts auditable. Correlation creates investig
 without proving causality. Explainable scoring supports prioritization, while ATT&CK mapping
 communicates hypotheses consistently. See [interview guide](docs/interview-guide.md) and
 [truthful resume material](docs/resume-material.md).
+

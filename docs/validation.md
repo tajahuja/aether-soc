@@ -4,11 +4,11 @@ Validated on Windows with Python 3.12.14 on 2026-10-03.
 
 - Installed pinned direct dependencies in `.venv` and froze the tested full environment.
 - `pip check`: no broken requirements.
-- Seed-42 demo: 1,222 normalized events, 9 alerts, 5 incidents.
+- Seed-42 demo: 1,222 normalized events, 10 alerts, 6 incidents.
 - Main case `INC-b06a7a636c3c`: four alerts, ten evidence events, risk 100/100.
 - Every labeled scenario class 1–5 contributes detection evidence; no benign seed-42
   event appears in an alert. This is fixture coverage, not a real-world false-positive rate.
-- pytest: 22 passing tests after the UTC normalization regression test was added.
+- pytest: 24 passing tests after the UTC normalization regression test was added.
 - Ruff: all checks pass.
 - Streamlit AppTest rendered KPIs, charts and incident details, then changed incident selection
   without an exception.
@@ -39,3 +39,4 @@ $env:TMP = $env:TEMP
 
 No GitHub push, production deployment, real attack, scan or real telemetry ingestion occurred.
 Local commits use a clearly labeled builder identity rather than impersonating the user.
+

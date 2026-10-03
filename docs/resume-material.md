@@ -21,7 +21,7 @@ AetherSOC is my defensive SOC portfolio lab. I wanted to understand the differen
 one event and investigating a sequence. I used Python and Pydantic for normalization, modular rules
 for authentication, processes, identity and network activity, and SQLite for local persistence.
 The seeded dataset contains 1,200 benign events plus labeled scenario events. The default run yields
-nine alerts and five incidents. Correlation uses shared evidence or matching user and host within
+ten alerts and six incidents. Correlation uses shared evidence or matching user and host within
 30 minutes, and the score exposes each contribution. I mapped supported behaviors to MITRE ATT&CK,
 built an investigation dashboard and tested timing boundaries and false-positive inputs. It is an
 educational batch system with an offline analyst interface, not a production SIEM or a deployed LLM.
@@ -34,3 +34,4 @@ detections, MITRE ATT&CK mapping, explainable risk scoring, correlated incidents
 dashboard with downloadable investigation reports. Automated tests cover rule behavior and the
 analysis workflow. The project uses only fictional sample data and does not perform attacks or scans.
 My next steps are baseline tuning, session-aware correlation and a carefully scoped optional AI provider.
+

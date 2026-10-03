@@ -107,6 +107,20 @@ def test_benign_process_not_detected():
                                command_line='-enc Zg==')])
 
 
+def test_privileged_login_hours():
+    assert not run_rules([event(status='success', privileged=True)])
+    alerts = run_rules([event(-10800, status='success', privileged=True)])
+    assert alerts[0].rule_name == 'Unusual Privileged Login'
+
+
+def test_network_privilege_context_expires():
+    login = event(status='success', privileged=True)
+    network = event(1801, event_type='network', destination_ip='203.0.113.200')
+    alerts = run_rules([login, network])
+    assert len(alerts[0].evidence) == 1
+    assert alerts[0].severity == 'MEDIUM'
+
+
 def test_risk_scoring_is_explainable_and_capped():
     events = failures() + [event(70, status='success', privileged=True),
                            event(80, event_type='process', process_name='powershell.exe',
@@ -157,8 +171,9 @@ def test_complete_seeded_demo_scenarios():
     observed = {labels[e] for a in alerts for e in a.evidence}
     assert {'1', '2', '3', '4', '5'} <= observed
     assert len(events) == 1222
-    assert len(alerts) == 9
-    assert len(correlate(alerts, events)) == 5
+    assert len(alerts) == 10
+    assert len({a.rule_name for a in alerts}) == 7
+    assert len(correlate(alerts, events)) == 6
     assert not any(labels[e] == 'benign' for a in alerts for e in a.evidence)
 
 
@@ -166,7 +181,7 @@ def test_api_routes():
     client = TestClient(api)
     assert client.get('/health').json()['status'] == 'ok'
     incidents = client.get('/incidents').json()
-    assert len(incidents) == 5
+    assert len(incidents) == 6
     assert client.get('/incidents/' + incidents[0]['incident_id']).status_code == 200
     assert client.get('/incidents/missing').status_code == 404
 

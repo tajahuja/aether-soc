@@ -53,7 +53,7 @@ def generate(seed=42):
     add(5060, user='lab.nova', host='lab-ws-03', source='198.51.100.80', site='lab-west', scenario='3')
     for i in range(6):
         add(6000+i*20, user=f'lab.target{i}', host='lab-ws-04', source='192.0.2.201', status='failure', scenario='4')
-    add(-7200, user='lab.ops-admin', host='lab-ws-05', privileged=True, scenario='privileged')
+    add(-10800, user='lab.ops-admin', host='lab-ws-05', privileged=True, scenario='privileged')
     add(9000, user='lab.ops-admin', host='lab-ws-05', privileged=True, scenario='5')
     add(9050, 'network', 'lab.ops-admin', 'lab-ws-05', scenario='5',
         destination_ip='203.0.113.200', destination_port=8443, action='connect')

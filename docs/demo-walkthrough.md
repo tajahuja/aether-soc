@@ -1,7 +1,7 @@
 # Five-minute recruiter walkthrough
 
 1. Regenerate with `python -m app.cli demo` using the project virtual environment.
-2. Start Streamlit and show 1,222 events, nine alerts and five incidents.
+2. Start Streamlit and show 1,222 events, ten alerts and six incidents.
 3. Explain that most telemetry is benign and labels are not used by detections.
 4. Select the lab.admin incident. Read the sequence: failures at 10:01 UTC onward,
    success at 10:03, PowerShell at 10:03:30 and network connection at 10:04.
@@ -15,3 +15,4 @@
 Understand these five files first: `scripts/generate_data.py`, `app/models/security.py`,
 `app/detection/authentication.py`, `app/correlation/incidents.py`, `app/scoring/risk.py`.
 Then explore the dashboard and reporting module to see how findings become analyst decisions.
+
