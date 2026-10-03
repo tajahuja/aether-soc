@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from ipaddress import ip_address
 from typing import Any, Literal
 from pydantic import BaseModel, Field, field_validator
@@ -8,6 +8,7 @@ Severity = Literal['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']
 class Event(BaseModel):
     timestamp: datetime
     event_id: str
+    event_code: int | None = None
     event_type: Literal['authentication', 'process', 'dns', 'network', 'firewall', 'endpoint']
     hostname: str
     username: str = ''
@@ -31,7 +32,7 @@ class Event(BaseModel):
     def aware_time(cls, value: datetime) -> datetime:
         if value.tzinfo is None or value.utcoffset() is None:
             raise ValueError('timestamp must include a timezone')
-        return value
+        return value.astimezone(timezone.utc)
 
     @field_validator('source_ip', 'destination_ip')
     @classmethod

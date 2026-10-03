@@ -16,6 +16,8 @@ def generate(seed=42):
         raw = dict(provider='windows' if windows else 'sensor',
                    timestamp=(base + timedelta(seconds=seconds)).isoformat(), event_id=event_id,
                    event_type=kind, source_ip=source, status=status, **extra)
+        if windows:
+            raw['event_code'] = (4625 if status == 'failure' else 4624) if kind == 'authentication' else 4688
         raw['computer' if windows else 'hostname'] = host
         raw['account' if windows else 'username'] = user
         records.append(raw)

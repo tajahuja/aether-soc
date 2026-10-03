@@ -1,0 +1,37 @@
+title: AetherSOC Authentication Failure Base
+name: aethersoc_auth_failure
+id: b190de81-39e6-4db0-9870-b2c17fc03986
+status: experimental
+description: Normalized failed authentication base for correlation
+author: AetherSOC contributors
+date: 2026-10-03
+logsource:
+  category: authentication
+detection:
+  selection:
+    event_type: authentication
+    status: failure
+  condition: selection
+level: informational
+---
+title: AetherSOC Repeated Authentication Failures
+id: aea563c6-951c-42e2-99df-19f6b07ab6cf
+status: experimental
+description: At least five failures from a source in five minutes
+author: AetherSOC contributors
+date: 2026-10-03
+correlation:
+  type: event_count
+  rules:
+    - aethersoc_auth_failure
+  group-by:
+    - source_ip
+  timespan: 5m
+  condition:
+    gte: 5
+falsepositives:
+  - Shared egress sources and repeated legitimate password errors
+level: high
+tags:
+  - attack.credential-access
+  - attack.t1110

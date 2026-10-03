@@ -1,0 +1,28 @@
+title: AetherSOC Suspicious PowerShell Command Line
+id: 4b6a93d9-6223-4d69-8f1c-d1046f6c3d25
+status: experimental
+description: Encoded or hidden PowerShell indicators requiring analyst review
+author: AetherSOC contributors
+date: 2026-10-03
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  image:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  command:
+    CommandLine|contains:
+      - ' -EncodedCommand '
+      - ' -enc '
+      - ' -WindowStyle Hidden '
+      - 'DownloadString'
+      - 'Invoke-Expression'
+  condition: image and command
+falsepositives:
+  - Approved administration and automation scripts
+level: high
+tags:
+  - attack.execution
+  - attack.t1059.001

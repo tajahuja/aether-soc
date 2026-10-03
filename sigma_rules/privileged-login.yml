@@ -1,0 +1,20 @@
+title: AetherSOC Privileged Successful Authentication
+id: 56a703eb-ff3e-4d3a-9a83-63bfce25e107
+status: experimental
+description: Base filter; backend enrichment must restrict UTC hour outside 08-18
+author: AetherSOC contributors
+date: 2026-10-03
+logsource:
+  category: authentication
+detection:
+  selection:
+    event_type: authentication
+    status: success
+    privileged: true
+  condition: selection
+falsepositives:
+  - Approved privileged activity
+level: medium
+tags:
+  - attack.initial-access
+  - attack.t1078

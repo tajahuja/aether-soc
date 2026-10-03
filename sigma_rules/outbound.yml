@@ -1,0 +1,15 @@
+title: AetherSOC Lab Indicator Outbound Connection
+id: 138ed9f1-aab0-49f3-b4d3-075ee86dbdd5
+status: experimental
+description: Documentation-only lab destination; not a real threat intelligence indicator
+author: AetherSOC contributors
+date: 2026-10-03
+logsource:
+  category: network_connection
+detection:
+  selection:
+    DestinationIp: '203.0.113.200'
+  condition: selection
+falsepositives:
+  - Intentional synthetic lab traffic
+level: medium

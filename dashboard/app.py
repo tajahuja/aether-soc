@@ -42,9 +42,10 @@ with right:
 st.subheader('Incident queue')
 st.dataframe(pd.DataFrame(incidents)[['incident_id','severity','risk_score','start_time','status','title']],
              hide_index=True, use_container_width=True)
-selected = st.selectbox('Investigate incident', incidents,
-                        format_func=lambda i: f"{i['incident_id']} • {i['risk_score']}/100 • {', '.join(i['users'])}")
-incident = Incident.model_validate(selected)
+options = {f"{item['incident_id']} • {item['risk_score']}/100 • {', '.join(item['users'])}": item
+           for item in incidents}
+selected = st.selectbox('Investigate incident', list(options))
+incident = Incident.model_validate(options[selected])
 st.subheader(incident.title)
 st.write(f'**{incident.severity} · Risk {incident.risk_score}/100**')
 st.write('Users:', ', '.join(incident.users), ' | Hosts:', ', '.join(incident.hosts))

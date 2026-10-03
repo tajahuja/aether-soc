@@ -10,3 +10,4 @@ data/processed/*
 reports/generated/*
 .vscode/
 *.log
+.test-work/
